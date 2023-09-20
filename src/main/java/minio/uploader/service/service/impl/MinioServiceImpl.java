@@ -1,12 +1,13 @@
-package com.springminio.app.service.impl;
+package minio.uploader.service.service.impl;
 
-import com.springminio.app.config.MinioConfig;
-import com.springminio.app.payload.FileResponse;
-import com.springminio.app.service.MinioService;
-import com.springminio.app.util.MinioUtil;
+
 import io.minio.messages.Bucket;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import minio.uploader.service.config.MinioConfig;
+import minio.uploader.service.payload.FileResponse;
+import minio.uploader.service.service.MinioService;
+import minio.uploader.service.util.MinioUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

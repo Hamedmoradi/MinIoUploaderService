@@ -1,6 +1,5 @@
-package com.springminio.app.util;
+package minio.uploader.service.util;
 
-import com.springminio.app.config.MinioConfig;
 import io.minio.*;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
@@ -9,6 +8,7 @@ import io.minio.messages.DeleteObject;
 import io.minio.messages.Item;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import minio.uploader.service.config.MinioConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -30,7 +30,6 @@ public class MinioUtil {
     private final MinioClient minioClient;
     private final MinioConfig minioConfig;
 
-    // Upload Files
     @SneakyThrows
     public void putObject(String bucketName, MultipartFile multipartFile, String filename, String fileType) {
 
@@ -70,7 +69,6 @@ public class MinioUtil {
         return found;
     }
 
-    // Create bucket name
     @SneakyThrows
     public boolean makeBucket(String bucketName) {
 
@@ -92,7 +90,6 @@ public class MinioUtil {
         }
     }
 
-    // List all buckets
     @SneakyThrows
     public List<Bucket> listBuckets() {
         LOGGER.info("MinioUtil | listBuckets is called");
@@ -100,7 +97,6 @@ public class MinioUtil {
         return minioClient.listBuckets();
     }
 
-    // List all bucket names
     @SneakyThrows
     public List<String> listBucketNames() {
 
@@ -120,7 +116,6 @@ public class MinioUtil {
         return bucketListName;
     }
 
-    // List all objects from the specified bucket
     @SneakyThrows
     public Iterable<Result<Item>> listObjects(String bucketName) {
 
@@ -137,7 +132,6 @@ public class MinioUtil {
         return null;
     }
 
-    // Delete Bucket by its name from the specified bucket
     @SneakyThrows
     public boolean removeBucket(String bucketName) {
 
@@ -151,16 +145,12 @@ public class MinioUtil {
 
             for (Result<Item> result : myObjects) {
                 Item item = result.get();
-                //  Delete failed when There are object files in bucket
-
                 LOGGER.info("MinioUtil | removeBucket | item size : " + item.size());
-
                 if (item.size() > 0) {
                     return false;
                 }
             }
 
-            //  Delete bucket when bucket is empty
             minioClient.removeBucket(RemoveBucketArgs.builder().bucket(bucketName).build());
             flag = bucketExists(bucketName);
 
@@ -172,7 +162,6 @@ public class MinioUtil {
         return false;
     }
 
-    // List all object names from the specified bucket
     @SneakyThrows
     public List<String> listObjectNames(String bucketName) {
 
@@ -198,7 +187,6 @@ public class MinioUtil {
         return listObjectNames;
     }
 
-    // Delete object from the specified bucket
     @SneakyThrows
     public boolean removeObject(String bucketName, String objectName) {
 
@@ -216,7 +204,6 @@ public class MinioUtil {
         return false;
     }
 
-    // Get file path from the specified bucket
     @SneakyThrows
     public String getObjectUrl(String bucketName, String objectName) {
 
@@ -239,7 +226,6 @@ public class MinioUtil {
         return url;
     }
 
-    // Get metadata of the object from the specified bucket
     @SneakyThrows
     public StatObjectResponse statObject(String bucketName, String objectName) {
         LOGGER.info("MinioUtil | statObject is called");
@@ -258,7 +244,6 @@ public class MinioUtil {
         return null;
     }
 
-    // Get a file object as a stream from the specified bucket
     @SneakyThrows
     public InputStream getObject(String bucketName, String objectName) {
         LOGGER.info("MinioUtil | getObject is called");
@@ -283,7 +268,6 @@ public class MinioUtil {
         return null;
     }
 
-    // Get a file object as a stream from the specified bucket （ Breakpoint download )
     @SneakyThrows
     public InputStream getObject(String bucketName, String objectName, long offset, Long length) {
 
@@ -311,7 +295,6 @@ public class MinioUtil {
         return null;
     }
 
-    // Delete multiple file objects from the specified bucket
     @SneakyThrows
     public boolean removeObject(String bucketName, List<String> objectNames) {
         LOGGER.info("MinioUtil | removeObject is called");
@@ -339,7 +322,6 @@ public class MinioUtil {
         return true;
     }
 
-    // Upload InputStream object to the specified bucket
     @SneakyThrows
     public boolean putObject(String bucketName, String objectName, InputStream inputStream, String contentType) {
 

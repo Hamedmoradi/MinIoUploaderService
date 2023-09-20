@@ -1,10 +1,12 @@
-package com.springminio.app.controller;
+package minio.uploader.service.controller;
 
-import com.springminio.app.exception.FileResponseException;
-import com.springminio.app.payload.FileResponse;
-import com.springminio.app.service.MinioService;
-import com.springminio.app.util.FileTypeUtils;
+
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import minio.uploader.service.exception.FileResponseException;
+import minio.uploader.service.payload.FileResponse;
+import minio.uploader.service.service.MinioService;
+import minio.uploader.service.util.FileTypeUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;

@@ -1,4 +1,4 @@
-package com.springminio.app.util;
+package minio.uploader.service.util;
 
 import cn.hutool.core.io.FileTypeUtil;
 import org.slf4j.Logger;

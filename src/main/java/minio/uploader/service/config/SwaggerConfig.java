@@ -1,4 +1,4 @@
-package com.springminio.app.config;
+package minio.uploader.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.springminio"))
+                .apis(RequestHandlerSelectors.basePackage("minio.uploader.service"))
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiEndPointsInfo());
 
@@ -29,7 +29,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Spring Boot Minio")
                 .description("The usage of Minio in Spring Boot App")
-                .contact(new Contact("Noyan Germiyanoğlu", "github.com/Rapter1990", "sngermiyanoglu@hotmail.com"))
+                .contact(new Contact("Hamed Moradi", "github.com/MinioUploaderService", "hamedmoradi.mailsbox@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.12.3")

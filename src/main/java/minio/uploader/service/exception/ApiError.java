@@ -1,4 +1,4 @@
-package com.springminio.app.exception;
+package minio.uploader.service.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

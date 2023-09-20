@@ -1,7 +1,7 @@
-package com.springminio.app.exception.error;
+package minio.uploader.service.exception.error;
 
-import com.springminio.app.exception.ApiError;
-import com.springminio.app.exception.FileResponseException;
+import minio.uploader.service.exception.ApiError;
+import minio.uploader.service.exception.FileResponseException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,6 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    // handleHttpMediaTypeNotSupported : triggers when the JSON is invalid
-    @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(
             HttpMediaTypeNotSupportedException ex,
             HttpHeaders headers,
@@ -47,8 +45,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
-    // handleHttpMessageNotReadable : triggers when the JSON is malformed
-    @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
                                                                   HttpHeaders headers, HttpStatus status,
                                                                   WebRequest request) {
@@ -63,8 +59,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
-    // handleMethodArgumentNotValid : triggers when @Valid fails
-    @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status,
                                                                   WebRequest request) {
@@ -83,8 +77,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
-    // handleMissingServletRequestParameter : triggers when there are missing parameters
-    @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(
             MissingServletRequestParameterException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
@@ -98,7 +90,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
-    // handleCategoryNotFoundException : triggers when there is not resource with the specified ID in Category
     @ExceptionHandler(FileResponseException.class)
     public ResponseEntity<Object> handleFileResponseNotFoundException(FileResponseException ex) {
 

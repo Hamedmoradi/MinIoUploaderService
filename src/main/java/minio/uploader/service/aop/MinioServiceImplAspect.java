@@ -1,4 +1,4 @@
-package com.springminio.app.aop;
+package minio.uploader.service.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class MinioServiceImplAspect {
 
-    @Before(value="execution(* com.springminio.app.service.MinioService.*(..))")
+    @Before(value="execution(* minio.uploader.service.service.MinioService.*(..))")
     public void beforeAdvice(JoinPoint joinPoint){
         System.out.println("MinioServiceImplAspect | Before MinioService method got called");
     }
 
-    @After(value="execution(* com.springminio.app.service.MinioService.*(..))")
+    @After(value="execution(* minio.uploader.service.service.MinioService.*(..))")
     public void afterAdvice(JoinPoint joinPoint){
         System.out.println("MinioServiceImplAspect | After MinioService method got called");
     }
 
-    @AfterReturning(value="execution(* com.springminio.app.service.MinioService.*(..))")
+    @AfterReturning(value="execution(* minio.uploader.service.service.MinioService.*(..))")
     public void afterReturningAdvice(JoinPoint joinPoint){
         System.out.println("MinioServiceImplAspect | AfterReturning MinioService method got called");
     }

@@ -1,7 +1,8 @@
-package com.springminio.app.payload;
+package minio.uploader.service.payload;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Data
